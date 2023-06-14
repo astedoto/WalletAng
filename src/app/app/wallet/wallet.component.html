@@ -1,0 +1,29 @@
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <div class="header">
+    Мой новый кошелек
+  </div>
+
+  <div class="controls">
+    <h3>Ваши расходы за неделю</h3>
+
+    <button
+      tuiButton
+      type="button"
+      size="xs"
+      [appearance]="expanded ? 'secondary' : 'primary'"
+      (click)="toggle()">{{ expanded ? '-' : '+' }}
+    </button>
+  </div>
+
+  <app-wallet-add *ngIf="expanded" (add)="addPurchase($event)"></app-wallet-add>
+
+  <app-wallet-item *ngFor="let p of purchases" [purchase]="p"></app-wallet-item>
+
+
+
+  <div class="footer">
+    <span class="caption">Итого:&nbsp;</span>
+    <strong>{{ summary }}₽</strong>
+  </div>
+  <div *ngIf=showDiscount class="disc">Итого со скидкой: {{ summaryDiscount }}₽</div>
+</div>
